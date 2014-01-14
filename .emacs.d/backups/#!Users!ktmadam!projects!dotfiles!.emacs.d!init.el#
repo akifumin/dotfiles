@@ -168,6 +168,7 @@
 
 ;; emacs-plisp-modeのフックをセット
 ;; 無名関数
+;; 無名関数は再起動した時じゃないと評価されない
 ;; (add-hook 'emacs-lisp-mode-hook
 ;;           '(lambda ()
 ;;              (when (require 'eldoc nil t)
