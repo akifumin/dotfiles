@@ -16,6 +16,31 @@
 ;; 引数のディレクトリとそのサブディレクトリをload-pathに追加
 (add-to-load-path "elisp" "conf" "public_repos")
 
+;; auto-installの設定
+(when (require 'auto-install nil t)
+  ;; インストールディレクトリを設定する
+  (setq auto-install-directory "~/.emacs.d/elisp/")
+  ;; EmacsWikiに灯籠されているelispの名前を取得する
+  (auto-install-update-emacswiki-package-name t)
+  ;; 必要であればプロキシの設定を行う
+  ;;(setq url-proxy-services '(("http" . "localhost:8339")))
+  ;; install-elisp の関数を利用可能にする
+  (auto-install-compatibility-setup))
+
+;; redo+の設定 (auto-install)
+(when (require 'redo+ nil t)
+  ;; C-'にRedoを割り当てる
+  ;;  (global-set-key (kbd "C-'") 'redo)
+  ;; 日本語だとC-.がいい？
+  (global-set-key (kbd "C-.") 'redo)
+  )
+
+
+
+
+
+
+
 ;; カラーテーマ
 (when (require 'color-theme nil t)
   ;; テーマを読み込むための設定
@@ -168,6 +193,7 @@
 
 ;; emacs-plisp-modeのフックをセット
 ;; 無名関数
+;; 無名関数は再起動した時じゃないと評価されない
 ;; (add-hook 'emacs-lisp-mode-hook
 ;;           '(lambda ()
 ;;              (when (require 'eldoc nil t)
