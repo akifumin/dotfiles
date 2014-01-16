@@ -1,0 +1,35 @@
+<?php
+class Controller_Users extends Controller {
+
+  public function action_index () {
+
+    //$result = DB::query('SELECT * FROM `users`')->execute();
+    $result = DB::select('id', 'name')->from('users')->execute()->as_array();
+
+    $view =  View::forge('users/index');
+    $view->results = $result;
+    return $view;
+  }
+
+  public function action_update ()
+  {
+
+    $email = Input::post('email');
+    $name = Input::post('name');
+    
+
+    //    return $id." : ".$name;
+
+    //    DB::insert('users')->columns(array('id', 'name'))->values(array($id, $name))-execute();
+    list($insert_id, $rows_affected) = DB::insert('users')->set(array(
+                                                                      'email' => $email,
+                                                                      'name' => $name))->execute();
+
+    $result = DB::select('id', 'name')->from('users')->execute()->as_array();
+
+    $view = View::forge('users/index');
+    $view->results = $result;
+    return $view;
+  }
+ 
+}

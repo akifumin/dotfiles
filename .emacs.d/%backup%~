@@ -1,0 +1,57 @@
+# Use name-based virtual hosting.
+#
+NameVirtualHost *:80
+
+<VirtualHost *:80>
+
+    DocumentRoot "/Library/WebServer/Documents/akifumi/"
+    ServerName akifumi.nishi.com
+
+    ErrorLog logs/akifum-error_log
+    CustomLog logs/akifumi-access_log common
+
+
+    <Directory "/Library/WebServer/Documents/akifumi/">
+        Options FollowSymLinks
+        AllowOverride All
+        Order allow,deny
+        Allow from all
+    </Directory>
+
+</VirtualHost>
+
+<VirtualHost *:80>
+
+    DocumentRoot "/Users/akifumin/Sites/canyon/run/public"
+    ServerName akifumi.canyon
+
+    ErrorLog logs/akifumi-canyon-error_log
+    CustomLog logs/akifumi-canyon-access_log common
+
+
+    <Directory "/Users/akifumin/Sites/canyon/run/public">
+        Options FollowSymLinks
+        AllowOverride All 
+        Order allow,deny
+        Allow from all
+    </Directory>
+
+</VirtualHost>
+
+<VirtualHost *:80>
+
+    DocumentRoot "/Users/akifumin/Sites/cleaning-history/trunk/public"
+    ServerName cleaning-history.local
+
+    ErrorLog logs/cleaning-history-error_log
+    CustomLog logs/chleaning-history-access_log common
+
+
+    <Directory "/Users/akifumin/Sites/cleaning-history/trunk/public">
+        Options FollowSymLinks
+        AllowOverride All 
+        Order allow,deny
+        Allow from all
+    </Directory>
+
+</VirtualHost>
