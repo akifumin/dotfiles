@@ -1,0 +1,13 @@
+<?php
+
+
+
+class Controller_Ppt extends Controller {
+
+        public function action_index {
+
+                $ppt = Ppt2png::test;
+                return ppt;
+
+        }
+}
