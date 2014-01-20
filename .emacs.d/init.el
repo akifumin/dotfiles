@@ -311,7 +311,9 @@
   (when (require 'anything-config nil t)
     ;; root権限でアクションを実行するときのコマンド
     ;; デフォルトは"su"
-    (setq anything-su-or-sudo "sudo"))
+    (setq anything-su-or-sudo "sudo")
+
+    (add-to-list 'anything-sources 'anything-c-source-emacs-commands)
 
   (require 'anything-match-plugin nil t)
 
@@ -331,6 +333,53 @@
   (when (require 'descbinds-anything nil t)
     ;; describe-bindingsをAnythingに置き換える
     (descbinds-anything-install)))
+
+;;M-y にanything-show-kill-ringを割り当てる
+(define-key global-map (kbd "M-y") 'anything-show-kill-ring)
+;;
+(define-key global-map (kbd "C-x b") 'anything);
+;;==========================================================
+;;         moccurの設定
+;;==========================================================
+;; 要color-moccur.el
+(when (require 'anything-c-moccur nil t)
+  (setq
+   ;; anything-c-moccur用 'anything-idle-delay'
+   anything-c-moccur-anything-idle-delay 0.1
+   ;; バッファの情報をハイライトする
+   anything-c-moccur-higlight-info-line-flag t
+   ;; 現在選択中の候補の位置を他のwindowに表示する
+   anything-c-moccur-enable-auto-look-flag t
+   ;; 起動時にポイントの位置の単語を初期パターンにする
+   anything-c-moccur-enable-initial-pattern t)
+  ;; C-M-oにanything-c-moccur-by-moccurを割り当てる
+  (global-set-key (kbd "C-M-o") 'anything-c-moccur-occur-by-moccur))
+
+;;
+(when (require 'color-moccur nil t)
+  ;; M-oにoccur-by-moccurを割当
+  (define-key global-map (kbd "M-o") 'occur-by-moccur)
+  ;; スペース区切りでAND検索
+  (setq moccur-split-word t)
+  ;; ディレクトリ検索のときに除外するファイル
+  (add-to-list 'dmoccur-exclusion-mask "\\.DS_Store")
+  (add-to-list 'dmoccur-exclusion-mask "^#.+#$")
+  ;; Migemoを利用できる環境であればMigemoを使う
+  (when (and (executable-find "cmigemo")
+             (require 'migemo nil t))
+    (setq moccur-use-migemo t)))
+
+;; moccur-editの設定
+(require 'moccur-edit nil t)
+
+;;==========================================================
+;;         auto-completeの設定
+;;==========================================================
+(when (require 'auto-complete-config nil t)
+  (add-to-list 'ac-dictionary-directories
+               "~/.emacs.d/elisp/ac-dict")
+  (define-key ac-mode-map (kbd "M-TAB") 'auto-complete)
+  (ac-config-default))
 
 
 ;;==========================================================
