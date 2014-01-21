@@ -294,7 +294,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ▼要拡張機能インストール▼
 ;;; P122-129 候補選択型インタフェース──Anything
-;; (auto-install-batch "anything")
+(auto-install-batch "anything")
 (when (require 'anything nil t)
   (setq
    ;; 候補を表示するまでの時間。デフォルトは0.5
@@ -332,16 +332,16 @@
 
   (when (require 'descbinds-anything nil t)
     ;; describe-bindingsをAnythingに置き換える
-    (descbinds-anything-install)))
+    (descbinds-anything-install))))
 
-;;M-y にanything-show-kill-ringを割り当てる
+;; ;;M-y にanything-show-kill-ringを割り当てる
 (define-key global-map (kbd "M-y") 'anything-show-kill-ring)
-;;
-(define-key global-map (kbd "C-x b") 'anything);
+;; ;;
+(define-key global-map (kbd "C-x b") 'anything)
 ;;==========================================================
 ;;         moccurの設定
 ;;==========================================================
-;; 要color-moccur.el
+;;要color-moccur.el
 (when (require 'anything-c-moccur nil t)
   (setq
    ;; anything-c-moccur用 'anything-idle-delay'
@@ -355,7 +355,7 @@
   ;; C-M-oにanything-c-moccur-by-moccurを割り当てる
   (global-set-key (kbd "C-M-o") 'anything-c-moccur-occur-by-moccur))
 
-;;
+
 (when (require 'color-moccur nil t)
   ;; M-oにoccur-by-moccurを割当
   (define-key global-map (kbd "M-o") 'occur-by-moccur)
@@ -367,7 +367,7 @@
   ;; Migemoを利用できる環境であればMigemoを使う
   (when (and (executable-find "cmigemo")
              (require 'migemo nil t))
-    (setq moccur-use-migemo t)))
+     (setq moccur-use-migemo t)))
 
 ;; moccur-editの設定
 (require 'moccur-edit nil t)
@@ -380,7 +380,6 @@
                "~/.emacs.d/elisp/ac-dict")
   (define-key ac-mode-map (kbd "M-TAB") 'auto-complete)
   (ac-config-default))
-
 
 ;;==========================================================
 ;;         web-modeの設定
