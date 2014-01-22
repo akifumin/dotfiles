@@ -1,57 +1,63 @@
-# Use name-based virtual hosting.
-#
 NameVirtualHost *:80
 
+# aki.run.com
 <VirtualHost *:80>
+    DocumentRoot /Users/ktmadam/Sites/run
+    ServerName aki.run.com
 
-    DocumentRoot "/Library/WebServer/Documents/akifumi/"
-    ServerName akifumi.nishi.com
+    ErrorLog  /var/log/apache2/aki.run.com/error_log
+    CustomLog /var/log/apache2/aki.run.com/access_log common
 
-    ErrorLog logs/akifum-error_log
-    CustomLog logs/akifumi-access_log common
-
-
-    <Directory "/Library/WebServer/Documents/akifumi/">
+    <Directory "/Users/ktmadam/Sites/run">
         Options FollowSymLinks
         AllowOverride All
         Order allow,deny
         Allow from all
     </Directory>
-
 </VirtualHost>
 
 <VirtualHost *:80>
+    DocumentRoot /Users/ktmadam/Sites/momo/public
+    ServerName momo.com
 
-    DocumentRoot "/Users/akifumin/Sites/canyon/run/public"
-    ServerName akifumi.canyon
+    ErrorLog  /var/log/apache2/momo.com/error_log
+    CustomLog /var/log/apache2/momo.com/access_log common
 
-    ErrorLog logs/akifumi-canyon-error_log
-    CustomLog logs/akifumi-canyon-access_log common
-
-
-    <Directory "/Users/akifumin/Sites/canyon/run/public">
+    <Directory "/Users/ktmadam/Sites/momo/public">
         Options FollowSymLinks
-        AllowOverride All 
+        AllowOverride All
         Order allow,deny
         Allow from all
     </Directory>
-
 </VirtualHost>
 
 <VirtualHost *:80>
+    DocumentRoot /Users/ktmadam/Sites/canyon/run/public
+    ServerName akifumi.com
 
-    DocumentRoot "/Users/akifumin/Sites/cleaning-history/trunk/public"
-    ServerName cleaning-history.local
+    ErrorLog  /var/log/apache2/akifumi.canyon/error_log
+    CustomLog /var/log/apache2/akifumi.canyon/access_log common
 
-    ErrorLog logs/cleaning-history-error_log
-    CustomLog logs/chleaning-history-access_log common
-
-
-    <Directory "/Users/akifumin/Sites/cleaning-history/trunk/public">
+    <Directory "/Users/ktmadam/Sites/canyon/run/public">
         Options FollowSymLinks
-        AllowOverride All 
+        AllowOverride All
         Order allow,deny
         Allow from all
     </Directory>
+</VirtualHost>
 
+
+<VirtualHost *:80>
+    DocumentRoot /Users/ktmadam/Sites/fuel/public
+    ServerName fuel.com
+
+    ErrorLog  /var/log/apache2/fuel.com/error_log
+    CustomLog /var/log/apache2/fuel.com/access_log common
+
+    <Directory "/Users/ktmadam/Sites/fuelm/public">
+        Options FollowSymLinks
+        AllowOverride All
+        Order allow,deny
+        Allow from all
+    </Directory>
 </VirtualHost>
