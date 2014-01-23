@@ -382,39 +382,6 @@
   (ac-config-default))
 
 ;;==========================================================
-;;         wgrepの設定
-;;==========================================================
-(require 'wgrep nil t)
-
-;;==========================================================
-;;         undohistの設定
-;;==========================================================
-(when (require 'undohist nil t)
-  (undohist-initialize))
-
-;;==========================================================
-;;         undo-treeの設定
-;;==========================================================
-;;(when (require 'undo-tree nil t)
-;;  (global-undo-tree-mode))
-
-;;==========================================================
-;;         point-undoの設定
-;;==========================================================
-(when (require 'point-undo nil t)
-;;  (define-key global-map [f5] 'point-undo) 
-;;  (define-key global-map [f6] 'point-undo)
-  ;; おすすめ
-  (define-key global-map (kbd "M-[") 'point-undo)
-  (define-key global-map (kbd "M-]") 'point-undo)
-)
-
-;;==========================================================
-;;         クリップボード共有の設定
-;;==========================================================
-(setq x-select-enable-clipboard t)
-
-;;==========================================================
 ;;         web-modeの設定
 ;;==========================================================
 (require 'web-mode)
@@ -426,7 +393,7 @@
       (setq write-file-hooks
             (cons 'time-stamp write-file-hooks)))
   (setq time-stamp-format " %3a %3b %02d %02H:%02M:%02S %:y %Z")
-  (setq time-stamp-start "Last modified: 水曜日 1月 22 22:17:19 2014 JST
+  (setq time-stamp-start "Last modified:")
   (setq time-stamp-end "$")
   ;; web-modeの設定
   (setq web-mode-markup-indent-offset 2) ;; html indent
