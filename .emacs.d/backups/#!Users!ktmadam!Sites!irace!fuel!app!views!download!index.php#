@@ -1,0 +1,27 @@
+<div class="jumbotron">
+  <h1>iRace</h1>
+  <p class="lead">レースを管理するアプリ</p>
+
+  <?php if (Fuel::$envb == Fuel::DEVELOPMENT)  { ?>
+  <p><a class="btn btn-lg btn-primary"
+        href="http://irace.com/file/iRace_AdHoc.mobileprovision"
+        role="button">Provisioning File install</a>
+    <a class="btn btn-lg btn-success" href="itms-services://?action=download-manifest&url=http://irace.com/file/RaceManager.plist" role="button">App install</a></p>
+  <?php } else { ?>
+  <p><a class="btn btn-lg btn-primary"
+        href="http://runrunrun-irace.miraiserver.com/file/iRace_AdHoc.mobileprovision"
+        role="button">Provisioning File install</a>
+    <a class="btn btn-lg btn-success" href="itms-services://?action=download-manifest&url=http://runrunrun-irace.miraiserver.com/file/RaceManager.plist" role="button">App install</a></p>
+
+
+  <?php } ?>
+  
+</div>
+
+<!--
+<div class="jumbotron">
+<h1>Silent Camera</h1>
+<p class="lead">サイレントなカメラ</p>
+<p><a class="btn btn-lg btn-primary" href="#" role="button">Provisioning File install</a> <a class="btn btn-lg btn-success" href="#" role="button">App install</a></p>
+</div>
+-->

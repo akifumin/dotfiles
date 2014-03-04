@@ -33,7 +33,7 @@ NameVirtualHost *:80
 
 <VirtualHost *:80>
     DocumentRoot /Users/ktmadam/Sites/canyon/run/public
-    ServerName akifumi.com
+    ServerName akifumi.canyon
 
     ErrorLog  /var/log/apache2/akifumi.canyon/error_log
     CustomLog /var/log/apache2/akifumi.canyon/access_log common

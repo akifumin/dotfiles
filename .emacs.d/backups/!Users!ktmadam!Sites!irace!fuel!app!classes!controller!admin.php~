@@ -1,0 +1,144 @@
+<?php
+/**
+ * Fuel is a fast, lightweight, community driven PHP5 framework.
+ *
+ * @package    Fuel
+ * @version    1.5
+ * @author     Fuel Development Team
+ * @license    MIT License
+ * @copyright  2010 - 2013 Fuel Development Team
+ * @link       http://fuelphp.com
+ */
+
+/**
+ * The Welcome Controller.
+ *
+ * A basic controller example.  Has examples of how to set the
+ * response body and status.
+ *
+ * @package  app
+ * @extends  Controller
+ */
+class Controller_Admin extends Controller_Hybrid
+{
+
+
+        public function before()
+        {
+                parent::before();
+                // 初期処理
+                // POSTチェック
+                $post_methods = array(
+                        'created',
+                        'updated',
+                        'removed',
+                        );
+                $method = Uri::segment(2);
+                if (Input::method() !== 'POST' && in_array($method, $post_methods)) {
+                        Log::warning('【timeout1');
+                        Response::redirect('admin/timeout');
+                }
+                // ログインチェック
+                $auth_methods = array(
+                        '',
+                        'index',
+                        'logined',
+                        'logout',
+                        'update',
+                        'remove',
+                        );
+                Log::warning('method:'.$method);
+
+                if (in_array($method, $auth_methods) && !Auth::check()) {
+                        Log::warning('【login');
+                        Response::redirect('admin/login');
+                }
+                // ログイン済みチェック
+                $nologin_methods = array(
+                        'login',
+                        );
+                if (in_array($method, $nologin_methods) && Auth::check()) {
+                        Log::warning('【logined');
+                        Response::redirect('admin/logined');
+                }
+                // CSRFチェック
+                if (Input::method() === 'POST') {
+                        if (!Security::check_token()) {
+                                Log::warning('【timeout2');
+                                Response::redirect('admin/timeout');
+                        }
+                }
+
+                Log::warning('【before ok');
+
+//                Log::debug();
+//                Log::info('Application started (with $var = '.$var.')', 'my_init_function()');
+        }
+
+        
+	/**
+	 * The basic welcome message
+	 *
+	 * @access  public
+	 * @return  Response
+	 */
+	public function action_index ()
+	{
+//                $auth = Auth::instance();
+//                $auth->create_user('admin', 'ilikektm1024', 'aki0213ktm@yahoo.co.jp');
+                
+                $this->template->title = '管理者_index';
+                $this->template->page = 'admin';
+                $this->template->content = Response::forge(ViewModel::forge('admin/login'));
+        }
+
+        public function action_timeout () {
+                $this->template->page = 'admin';
+                $this->template->content = Response::forge(ViewModel::forge('admin/timeout'));
+        }
+
+        
+        public function action_logined () {
+                $this->template->page = 'admin';
+                $this->template->content = Response::forge(ViewModel::forge('admin/logined'));
+        }
+
+        
+
+        public function action_login()
+        {
+                // ログイン処理
+                $username = Input::post('username', null);
+                $password = Input::post('password', null);
+                $result_validate = '';
+
+
+                if ($username !== null && $password !== null) {
+//                        $validation = $this->validate_login();
+
+//                        $errors = $validation->error();
+//                        if (empty($errors)) {
+                        // ログイン認証を行う
+                        $auth = Auth::instance();
+                        if ($auth->login($username, $password)) {
+                                // ログイン成功
+                                $this->template->title = 'ログイン成功';
+                                Response::redirect('admin/logined');
+//                                        $this->template->content = Response::forge(ViewModel::forge('admin/index'));
+
+                        }
+                        $result_validate = "ログインに失敗しました。";
+                        $this->template->title = 'ログイン失敗1';
+//                        } else {
+//                                $result_validate = $validation->show_errors();
+//                                $result_validate = "dfasdf";
+//                                $this->template->title = 'ログイン失敗afsdasdf';
+//                        }
+                }
+
+                $this->template->content = Response::forge(ViewModel::forge('admin/login'));
+                $this->template->set_safe('errmsg', $result_validate);
+                $this->template->errmsg = $result_validate;
+        }
+}
+

@@ -1,0 +1,40 @@
+<?php
+/**
+ * The development database settings. These get merged with the global settings.
+ */
+
+return array(
+
+
+        'default' => array(
+
+                
+                'type'           => 'mysqli',
+                'connection'     => array(
+                        'hostname'       => 'localhost',
+                        'port'           => '3306',
+                        'database'       => 'fuel_db',
+                        'username'       => 'aki',
+                        'password'       => 'ilikektm',
+                        'persistent'     => false,
+                        'compress'       => false,
+                        ),
+                'identifier'     => '`',
+                'table_prefix'   => '',
+                'charset'        => 'utf8',
+                'enable_cache'   => true,
+                'profiling'      => false,
+                'readonly'       => false,
+                ),
+
+
+        /*
+	'default' => array(
+		'connection'  => array(
+			'dsn'        => 'mysql:host=mysql.miraiserver.com;dbname=u376452994_irace',
+			'username'   => 'u376452994_irace',
+			'password'   => 'ilikektm1024',
+		),
+	),
+        */
+);

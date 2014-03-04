@@ -1,4 +1,4 @@
-;; -*- emacs-lisp -*- <14/01/22 22:10:09 /Users/ktmadam/.emacs.d/tramp>
+;; -*- emacs-lisp -*- <14/02/28 23:47:23 /Users/ktmadam/.emacs.d/tramp>
 ;; Tramp connection history.  Don't change this file.
 ;; You can delete it, forcing Tramp to reapply the checks.
 
@@ -20,4 +20,12 @@
   ("uid-integer" 0)
   ("~root" "/var/root")
   ("ls" "/bin/ls")
-  ("ls-dired" nil)))
+  ("ls-dired" nil))
+ (["ssh" nil "ssh" nil nil]
+  nil)
+ (["ssh" "u376452994" "runrunrun-irace.miraiserver.com" nil nil]
+  nil)
+ (["ssh" nil "su" nil nil]
+  nil)
+ (["ssh" nil "sudo" nil nil]
+  nil))
